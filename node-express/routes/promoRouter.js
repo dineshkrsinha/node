@@ -1,32 +1,32 @@
 const express = require('express');
 const bodyParser=require('body-parser');
 
-const dishRouter = express.Router();
+const promoRouter = express.Router();
 
-dishRouter.use(bodyParser.json());
+promoRouter.use(bodyParser.json());
 
-dishRouter.route('/')
+promoRouter.route('/')
 .all((req, res, next) =>{
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
 .get((req, res, next) =>{
-    res.end('Will send all the dishes to you!');
+    res.end('Will send all the promotions to you!');
 })
 .post((req, res, next) =>{
-    res.end('Will add the dish:' + req.body.name + ' and details:' + req.body.description);
+    res.end('Will add the promotion:' + req.body.name + ' and details:' + req.body.description);
 })
 .put((req, res, next) =>{
     res.statusCode = 403;
-    res.end('Put operation not supported on dishes');
+    res.end('Put operation not supported on promotions');
 })
 .delete((req, res, next) =>{
-    res.end('deleting all dishes');
+    res.end('deleting all promotions');
 });
 
 
-dishRouter.route('/:id')
+promoRouter.route('/:id')
 .all((req, res, next) =>{
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -34,20 +34,20 @@ dishRouter.route('/:id')
 })
 .get((req, res, next) =>{
     var id = req.params.id;
-    res.end('Will send the dish  = ' + id + ' to you');
+    res.end('Will send the promotion  = ' + id + ' to you');
 })
 .post((req, res, next) =>{
     res.statusCode = 403;
     var id = req.params.id;
-    res.end('Post not supported for dish  = ' + id);
+    res.end('Post not supported for promotion  = ' + id);
 })
 .put((req, res, next) =>{
     var id = req.params.id;
-    res.end('Will update the dish: ' + id + ' and details:' + req.body.description);
+    res.end('Will update the promotion: ' + id + ' and details:' + req.body.description);
 })
 .delete((req, res, next) =>{
     var id = req.params.id;
-    res.end('Will delete the dish: ' + id + ' and details:' + req.body.description);
+    res.end('Will delete the promotion: ' + id + ' and details:' + req.body.description);
 });
 
-module.exports = dishRouter;
+module.exports = promoRouter;
