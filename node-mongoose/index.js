@@ -18,9 +18,28 @@ connect.then((db) => {
   })
     .then((dish) => {
       console.log(dish);
-      return Dishes.find({}).exec();
+
+      return Dishes.findByIdAndUpdate(dish._id, {
+        $set: { description: 'Updated test' }
+      }, {
+          new: true
+        })
+        .exec();
+    })
+    .then((dish) => {
+      console.log('******' + dish);
+
+      dish.comments.push({
+        rating: 5,
+        comment: 'I\'m getting a sinking feeling!',
+        author: 'Leonardo di Carpaccio'
+      });
+      console.log('****** push done' );
+
+      return dish.save();
     })
     .then((dishes) => {
+      console.log('***drop  success');
       console.log(dishes);
 
       return db.collection('dishes').drop();
