@@ -41,6 +41,11 @@ const connect = mongoose.connect(url, {
 
 connect.then((db) => {
   console.log("Connected correctly to server");
+
+  /*mongoose.set('debug', function (coll, method, query, doc) {
+    console.log('\n\n',' => Query executed: ', '\ncollection => ' + coll,
+      '\nmethod => ' + method, '\ndata => ' + util.inspect(query), '\n',doc && ('doc => ' + util.inspect(doc)),'\n')
+  });*/
 }, (err) => { console.log(err); });
 
 // catch 404 and forward to error handler
