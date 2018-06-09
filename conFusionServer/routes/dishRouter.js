@@ -45,7 +45,7 @@ dishRouter.route('/')
 
 dishRouter.route('/:id')
 .get((req, res, next) =>{
-    Dishes.findById(req.params.dishId)
+    Dishes.findById(req.params.id)
     .then((dish) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -59,7 +59,7 @@ dishRouter.route('/:id')
     res.end('Post not supported for dish  = ' + id);
 })
 .put((req, res, next) =>{
-    Dishes.findByIdAndUpdate(req.params.dishId, {
+    Dishes.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, { new: true })
     .then((dish) => {
@@ -70,7 +70,7 @@ dishRouter.route('/:id')
     .catch((err) => next(err));
 })
 .delete((req, res, next) =>{
-    Dishes.findByIdAndRemove(req.params.dishId)
+    Dishes.findByIdAndRemove(req.params.id)
     .then((resp) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
